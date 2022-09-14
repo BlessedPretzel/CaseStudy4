@@ -26,8 +26,11 @@ public class DrawingLoop implements Runnable {
     public void run() {
         while (running) {
             float time = System.currentTimeMillis();
-            checkDrawCollisions(platform.getCharacter());
-            paint(platform.getCharacter());
+            for (Character c : platform.getCharacter()) {
+                checkDrawCollisions(c);
+                paint(c);
+            }
+
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {

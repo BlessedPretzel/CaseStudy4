@@ -17,6 +17,8 @@ public class Character extends Pane {
     private int x;
     private int y;
     private KeyCode leftKey, rightKey, upKey;
+    //EXERCISE 2
+    int speedModifier;
     int xVelocity = 0;
     int yVelocity = 0;
     int xAcceleration = 1;
@@ -28,15 +30,15 @@ public class Character extends Pane {
     boolean isFalling = true;
     private boolean isMoveLeft = false;
     private boolean isMoveRight = false;
-
+    //EXERCISE 2
     public void moveY() {
         setTranslateY(y);
         if (isFalling) {
             yVelocity = yVelocity >= yMaxVelocity? yMaxVelocity : yVelocity+yAcceleration;
-            y = y + yVelocity;
+            y = y + yVelocity + speedModifier;
         } else if (isJumping) {
             yVelocity = yVelocity <= 0 ? 0 : yVelocity-yAcceleration;
-            y = y - yVelocity;
+            y = y - yVelocity - speedModifier;
         }
     }
 
@@ -64,16 +66,16 @@ public class Character extends Pane {
         isMoveLeft = false;
         isMoveRight = true;
     }
-
+    //EXERCISE 2
     public void moveX() {
         setTranslateX(x);
         if (isMoveLeft) {
             xVelocity = xVelocity >= xMaxVelocity? xMaxVelocity : xVelocity+xAcceleration;
-            x = x -xVelocity;
+            x = x -xVelocity - speedModifier;
         }
         if (isMoveRight) {
             xVelocity = xVelocity >= xMaxVelocity? xMaxVelocity : xVelocity+xAcceleration;
-            x = x +xVelocity;
+            x = x +xVelocity + speedModifier;
         }
     }
     public void stop() {
@@ -100,16 +102,17 @@ public class Character extends Pane {
         moveX();
         moveY();
     }
-
-    public Character(int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey) {
+    //EXERCISE 2
+    public Character(int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, int speedModifier, String assets) {
         this.x = x;
         this.y = y;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
+        this.speedModifier = speedModifier;
         this.setTranslateX(x);
         this.setTranslateY(y);
-        this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
+        this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/"+assets));
         this.imageView = new AnimatedSprite(characterImg, 4,4,1,offsetX,offsetY,16,32);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
@@ -117,7 +120,7 @@ public class Character extends Pane {
     }
 
     public void trace() {
-        logger.info("x:%d y:%d vx:%d vy:%d",x,y,xVelocity,yVelocity);
+        logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
     }
 
     public KeyCode getLeftKey() {

@@ -1,4 +1,4 @@
-module com.example.casestudy4 {
+module casestudy4 {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.slf4j;

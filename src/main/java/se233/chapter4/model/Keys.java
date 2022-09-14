@@ -2,7 +2,6 @@ package se233.chapter4.model;
 
 import javafx.scene.input.KeyCode;
 
-import java.security.Key;
 import java.util.HashMap;
 
 public class Keys {

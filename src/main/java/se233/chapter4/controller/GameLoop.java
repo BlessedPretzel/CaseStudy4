@@ -14,16 +14,17 @@ public class GameLoop implements Runnable{
         interval = 1000.0f / frameRate;
         isRunning = true;
     }
+    // EXERCISE 1
     private void update(Character character) {
         if (platform.getKeys().isPressed(character.getLeftKey())) {
             character.setScaleX(-1);
             character.moveLeft();
-            platform.getCharacter().trace();
+            character.trace();
         }
         if (platform.getKeys().isPressed(character.getRightKey())) {
             character.setScaleX(1);
             character.moveRight();
-            platform.getCharacter().trace();
+            character.trace();
         }
         if (!platform.getKeys().isPressed(character.getLeftKey()) && !platform.getKeys().isPressed(character.getRightKey())) {
             character.stop();
@@ -40,7 +41,8 @@ public class GameLoop implements Runnable{
     public void run() {
         while (isRunning) {
             float time = System.currentTimeMillis();
-            update(platform.getCharacter());
+            update(platform.getCharacter()[0]);
+            update(platform.getCharacter()[1]);
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {
