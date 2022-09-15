@@ -10,8 +10,11 @@ import se233.chapter4.view.Platform;
 
 public class Character extends Pane {
     Logger logger = LoggerFactory.getLogger(Character.class);
-    public static final int CHARACTER_WIDTH = 32;
-    public static final int CHARACTER_HEIGHT = 64;
+    private final int charWidth;
+    private final int charHeight;
+    private int width;
+    private int height;
+    private String name;
     private Image characterImg;
     private AnimatedSprite imageView;
     private int x;
@@ -47,7 +50,7 @@ public class Character extends Pane {
             yVelocity = yMaxVelocity;
             canJump = false;
             isJumping = true;
-            isFalling =false;
+            isFalling = false;
         }
     }
 
@@ -84,7 +87,7 @@ public class Character extends Pane {
     }
 
     public void checkReachFloor() {
-        if (isFalling && y>= Platform.GROUND - CHARACTER_HEIGHT) {
+        if (isFalling && y>= Platform.GROUND - charHeight) {
             isFalling = false;
             canJump = true;
             yVelocity = 0;
@@ -103,24 +106,27 @@ public class Character extends Pane {
         moveY();
     }
     //EXERCISE 2
-    public Character(int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, int speedModifier, String assets) {
+    public Character(String name, int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, int speedModifier, String assets, int width, int height, int charWidth, int charHeight) {
         this.x = x;
         this.y = y;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
         this.speedModifier = speedModifier;
+        this.charHeight = charHeight;
+        this.charWidth = charWidth;
+        this.name = name;
         this.setTranslateX(x);
         this.setTranslateY(y);
         this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/"+assets));
-        this.imageView = new AnimatedSprite(characterImg, 4,4,1,offsetX,offsetY,16,32);
-        this.imageView.setFitWidth(CHARACTER_WIDTH);
-        this.imageView.setFitHeight(CHARACTER_HEIGHT);
+        this.imageView = new AnimatedSprite(characterImg, 4,4,1,offsetX,offsetY,width,height);
+        this.imageView.setFitWidth(charWidth);
+        this.imageView.setFitHeight(charHeight);
         this.getChildren().addAll(this.imageView);
     }
 
     public void trace() {
-        logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
+        logger.info("{} x:{} y:{} vx:{} vy:{}",name,x,y,xVelocity,yVelocity);
     }
 
     public KeyCode getLeftKey() {

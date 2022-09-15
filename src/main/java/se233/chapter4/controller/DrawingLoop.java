@@ -1,5 +1,6 @@
-package se233.chapter4.model;
+package se233.chapter4.controller;
 
+import se233.chapter4.model.Character;
 import se233.chapter4.view.Platform;
 
 public class DrawingLoop implements Runnable {

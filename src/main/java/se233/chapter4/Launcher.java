@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import se233.chapter4.controller.GameLoop;
-import se233.chapter4.model.DrawingLoop;
+import se233.chapter4.controller.DrawingLoop;
 import se233.chapter4.view.Platform;
 
 public class Launcher extends Application {

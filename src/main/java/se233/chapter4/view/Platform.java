@@ -23,8 +23,8 @@ public class Platform extends Pane {
         backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
         // EXERCISE 1
-        this.character[0] = new Character(30,30,0,0, KeyCode.A, KeyCode.D, KeyCode.W, 0, "MarioSheet.png");
-        this.character[1] = new Character(30,30,0,0, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, 3, "MegamanSheet.png");
+        this.character[0] = new Character("Mario",30,30,0,0, KeyCode.A, KeyCode.D, KeyCode.W, 0, "MarioSheet.png", 16,32,32,64);
+        this.character[1] = new Character("Megaman",30,30,0,0, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, 3, "MegamanSheet.png",541,456,69,69);
         getChildren().addAll(backgroundImg, character[0], character[1]);
     }
 
