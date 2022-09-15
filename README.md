@@ -1,4 +1,4 @@
-# CaseStudy3
+# CaseStudy4
 
 ## Author - 642115024 Thaipat Sukhumpraisan
 
