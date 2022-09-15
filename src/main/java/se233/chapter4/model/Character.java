@@ -105,7 +105,7 @@ public class Character extends Pane {
         moveX();
         moveY();
     }
-    //EXERCISE 2
+    //EXERCISE 2, 3, 5
     public Character(String name, int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, int speedModifier, String assets, int width, int height, int charWidth, int charHeight) {
         this.x = x;
         this.y = y;
@@ -125,6 +125,7 @@ public class Character extends Pane {
         this.getChildren().addAll(this.imageView);
     }
 
+    // EXERCISE 5
     public void trace() {
         logger.info("{} x:{} y:{} vx:{} vy:{}",name,x,y,xVelocity,yVelocity);
     }
